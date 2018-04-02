@@ -5,7 +5,7 @@ of Contao Open Source CMS to allow reusing groups of fields. After
 installing and updating the database you'll find a new form field type
 *Sub Form*.
 
-#### Usage ####
+#### Usage
 
 Usage is straightforward:
 
@@ -18,14 +18,14 @@ The resulting form B now contains A's fields at the position of the
 *Sub Form* meta field. You can select if you want to overwrite the
 mandatory properties of the sub fields or keep them as they are.
 
-#### Naming ####
+#### Naming
 
 The field names of a sub form get prefixed by the name of the meta field
 and two underscores (e.g: `MySubField__FieldA`). The easiest way to
 avoid collisions is by not using double underscores `__` in your field
 names.
 
-#### Multiple Sub Forms ####
+#### Multiple Sub Forms
 You can use as many nested forms as you wish. Multiple nesting levels
 are supported as well, just make sure you don't create self referencing
 loops. Note that overwriting mandatory properties does not cascade down.
@@ -73,3 +73,4 @@ class AppKernel extends Kernel
 }
 ```
  
+#### Step 3: Update your Database
