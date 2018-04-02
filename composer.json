@@ -1,0 +1,35 @@
+{
+  "name": "mvo/contao-nested-forms",
+  "type": "contao-bundle",
+  "description": "Allow nested forms/sub forms in Contao Open Source CMS",
+  "keywords": [
+    "contao",
+    "forms",
+    "nested",
+    "sub",
+    "embed",
+    "form generator"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Moritz Vondano",
+      "homepage": "https://github.com/m-vo/contao-nested-forms"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "contao/core-bundle": "^4.4.0"
+  },
+  "require-dev": {
+    "contao/manager-plugin": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Mvo\\ContaoNestedForms\\": "src/"
+    }
+  },
+  "extra": {
+    "contao-manager-plugin": "Mvo\\ContaoNestedForms\\ContaoManager\\Plugin"
+  }
+}
