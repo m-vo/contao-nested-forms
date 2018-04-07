@@ -36,11 +36,7 @@ class FormCompiler
                 continue;
             }
 
-            $subFields = $this->getSubFormFields(
-                (int) $field->mvo_nested_forms_srcForm,
-                $field->name,
-                -1 !== $field->mvo_nested_forms_mandatory ? $field->mvo_nested_forms_mandatory : null
-            );
+            $subFields = $this->compileSubFormFields($field);
 
             // HOOK: compile sub form fields
             if (isset($GLOBALS['TL_HOOKS']['compileFormFields'])
@@ -65,32 +61,34 @@ class FormCompiler
     }
 
     /**
-     * @param int       $id
-     * @param string    $prefix
-     * @param bool|null $mandatory
+     * @param FormFieldModel $metaField
      *
      * @return FormFieldModel[]
      */
-    private function getSubFormFields(int $id, string $prefix, ?bool $mandatory): array
+    private function compileSubFormFields(FormFieldModel $metaField): array
     {
-        $fieldModels = FormFieldModel::findPublishedByPid($id);
+        $fieldModels = FormFieldModel::findPublishedByPid((int) $metaField->mvo_nested_forms_srcForm);
         if (null === $fieldModels) {
             return [];
         }
 
-        $fields = [];
+        $fields    = [];
+        $mandatory = -1 !== $metaField->mvo_nested_forms_mandatory ?
+            $metaField->mvo_nested_forms_mandatory : null;
+
         foreach ($fieldModels as $fieldModel) {
-            // exclude submit fields
-            if ('submit' !== $fieldModel->type) {
-                $field = clone $fieldModel;
+            $field = clone $fieldModel;
 
-                $field->name = $prefix . '__' . $fieldModel->name;
-                if (null !== $mandatory) {
-                    $field->mandatory = $mandatory;
-                }
+            // generate prefixed pseudo name and id
+            $field->name = $metaField->name . '__' . $field->name;
+            $field->id   = $metaField->id . '__' . $fieldModel->id;
 
-                $fields[] = $field;
+            // mandatory attribute
+            if (null !== $mandatory) {
+                $field->mandatory = $mandatory;
             }
+
+            $fields[] = $field;
         }
 
         return $fields;
