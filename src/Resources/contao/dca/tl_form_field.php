@@ -1,8 +1,16 @@
 <?php
 
-/**
- * DCA tl_content
+declare(strict_types=1);
+
+/*
+ * Nested Forms Bundle for Contao Open Source CMS
+ *
+ * @copyright  Moritz Vondano
+ * @license    MIT
+ * @link       https://github.com/m-vo/contao-nested-forms
+ *
  */
+
 $GLOBALS['TL_DCA']['tl_form_field']['palettes']['mvo_nested_forms_subForm'] =
     '{type_legend},type,name;{mvo_nested_forms_legend},mvo_nested_forms_srcForm,mvo_nested_forms_mandatory';
 

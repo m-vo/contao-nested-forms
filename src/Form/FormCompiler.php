@@ -1,6 +1,6 @@
 <?php
 
-//declare(strict_types=1);
+declare(strict_types=1);
 
 /*
  * Nested Forms Bundle for Contao Open Source CMS
