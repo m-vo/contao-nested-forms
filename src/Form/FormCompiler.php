@@ -48,7 +48,7 @@ class FormCompiler
                     }
 
                     $objCallback = System::importStatic($callback[0]);
-                    $subFields   = $objCallback->{$callback[1]}($subFields, $formFieldId . '_x', $form);
+                    $subFields   = $objCallback->{$callback[1]}($subFields, $formFieldId, $form);
                 }
             }
 
