@@ -73,7 +73,7 @@ class FormCompiler
         }
 
         $fields    = [];
-        $mandatory = -1 !== $metaField->mvo_nested_forms_mandatory ?
+        $mandatory = -1 !== (int)$metaField->mvo_nested_forms_mandatory ?
             $metaField->mvo_nested_forms_mandatory : null;
 
         foreach ($fieldModels as $fieldModel) {
