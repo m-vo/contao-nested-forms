@@ -3,12 +3,10 @@
 declare(strict_types=1);
 
 /*
- * Nested Forms Bundle for Contao Open Source CMS
+ * Nested forms bundle for Contao Open Source CMS
  *
- * @copyright  Moritz Vondano
- * @license    MIT
- * @link       https://github.com/m-vo/contao-nested-forms
- *
+ * @copyright  Copyright (c) $date, Moritz Vondano
+ * @license MIT
  */
 
 namespace Mvo\ContaoNestedForms\EventListener\DataContainer;
@@ -35,15 +33,16 @@ class FormField
      */
     public function __construct(TokenStorageInterface $tokenStorage, Connection $database)
     {
-        $this->token    = $tokenStorage->getToken();
+        $this->token = $tokenStorage->getToken();
         $this->database = $database;
     }
 
     /**
      * @param DataContainer $dc
      *
-     * @return array
      * @throws \Doctrine\DBAL\DBALException
+     *
+     * @return array
      */
     public function onGetForms(DataContainer $dc): array
     {
@@ -61,7 +60,7 @@ class FormField
         $forms = [];
         foreach ($formCandidates as $id => $title) {
             if ($user->hasAccess($id, 'forms')) {
-                $forms[$id] = $title . ' (ID ' . $id . ')';
+                $forms[$id] = $title.' (ID '.$id.')';
             }
         }
 

@@ -3,12 +3,10 @@
 declare(strict_types=1);
 
 /*
- * Nested Forms Bundle for Contao Open Source CMS
+ * Nested forms bundle for Contao Open Source CMS
  *
- * @copyright  Moritz Vondano
- * @license    MIT
- * @link       https://github.com/m-vo/contao-nested-forms
- *
+ * @copyright  Copyright (c) $date, Moritz Vondano
+ * @license MIT
  */
 
 namespace Mvo\ContaoNestedForms\DependencyInjection;
@@ -28,9 +26,9 @@ class MvoContaoNestedFormsExtension extends Extension
      *
      * @throws \Exception
      */
-    public function load(array $configs, ContainerBuilder $container) : void
+    public function load(array $configs, ContainerBuilder $container): void
     {
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
     }
 }

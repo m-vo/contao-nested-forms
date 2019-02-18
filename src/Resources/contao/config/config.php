@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+/*
+ * Nested forms bundle for Contao Open Source CMS
+ *
+ * @copyright  Copyright (c) $date, Moritz Vondano
+ * @license MIT
+ */
+
 use Mvo\ContaoNestedForms\Form\SubForm;
 
 /*

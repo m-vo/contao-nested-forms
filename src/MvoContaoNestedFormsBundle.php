@@ -3,12 +3,10 @@
 declare(strict_types=1);
 
 /*
- * Nested Forms Bundle for Contao Open Source CMS
+ * Nested forms bundle for Contao Open Source CMS
  *
- * @copyright  Moritz Vondano
- * @license    MIT
- * @link       https://github.com/m-vo/contao-nested-forms
- *
+ * @copyright  Copyright (c) $date, Moritz Vondano
+ * @license MIT
  */
 
 namespace Mvo\ContaoNestedForms;

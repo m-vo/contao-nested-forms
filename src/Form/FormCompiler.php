@@ -3,12 +3,10 @@
 declare(strict_types=1);
 
 /*
- * Nested Forms Bundle for Contao Open Source CMS
+ * Nested forms bundle for Contao Open Source CMS
  *
- * @copyright  Moritz Vondano
- * @license    MIT
- * @link       https://github.com/m-vo/contao-nested-forms
- *
+ * @copyright  Copyright (c) $date, Moritz Vondano
+ * @license MIT
  */
 
 namespace Mvo\ContaoNestedForms\Form;
@@ -48,7 +46,7 @@ class FormCompiler
                     }
 
                     $objCallback = System::importStatic($callback[0]);
-                    $subFields   = $objCallback->{$callback[1]}($subFields, $formFieldId, $form);
+                    $subFields = $objCallback->{$callback[1]}($subFields, $formFieldId, $form);
                 }
             }
 
@@ -72,16 +70,16 @@ class FormCompiler
             return [];
         }
 
-        $fields    = [];
-        $mandatory = -1 !== (int)$metaField->mvo_nested_forms_mandatory ?
+        $fields = [];
+        $mandatory = -1 !== (int) $metaField->mvo_nested_forms_mandatory ?
             $metaField->mvo_nested_forms_mandatory : null;
 
         foreach ($fieldModels as $fieldModel) {
             $field = clone $fieldModel;
 
             // generate prefixed pseudo name and id
-            $field->name = $metaField->name . '__' . $field->name;
-            $field->id   = $metaField->id . '__' . $fieldModel->id;
+            $field->name = $metaField->name.'__'.$field->name;
+            $field->id = $metaField->id.'__'.$fieldModel->id;
 
             // mandatory attribute
             if (null !== $mandatory) {

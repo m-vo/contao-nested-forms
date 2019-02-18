@@ -22,7 +22,8 @@
     "contao/core-bundle": "^4.4.0"
   },
   "require-dev": {
-    "contao/manager-plugin": "^2.0"
+    "contao/manager-plugin": "^2.0",
+    "friendsofphp/php-cs-fixer": "^2.2"
   },
   "conflict": {
     "doctrine/dbal": "2.7.0"

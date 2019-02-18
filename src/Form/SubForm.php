@@ -3,12 +3,10 @@
 declare(strict_types=1);
 
 /*
- * Nested Forms Bundle for Contao Open Source CMS
+ * Nested forms bundle for Contao Open Source CMS
  *
- * @copyright  Moritz Vondano
- * @license    MIT
- * @link       https://github.com/m-vo/contao-nested-forms
- *
+ * @copyright  Copyright (c) $date, Moritz Vondano
+ * @license MIT
  */
 
 namespace Mvo\ContaoNestedForms\Form;
@@ -37,8 +35,7 @@ class SubForm extends Widget
 
         // parse sub form's fields
         $output = '';
-        foreach ($fieldModels as $fieldModel)
-        {
+        foreach ($fieldModels as $fieldModel) {
             $class = $GLOBALS['TL_FFL'][$fieldModel->type];
             if (!class_exists($class)) {
                 continue;
