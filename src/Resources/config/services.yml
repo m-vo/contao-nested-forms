@@ -9,3 +9,4 @@ services:
     arguments:
       - '@security.token_storage'
       - '@database_connection'
+    public: true
