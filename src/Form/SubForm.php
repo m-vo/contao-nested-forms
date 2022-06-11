@@ -23,8 +23,6 @@ class SubForm extends Widget
 
     /**
      * @param null $arrAttributes
-     *
-     * @return string
      */
     public function parse($arrAttributes = null): string
     {

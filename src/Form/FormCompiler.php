@@ -21,8 +21,6 @@ class FormCompiler
      * Insert sub forms.
      *
      * @param FormFieldModel[] $fields
-     * @param string           $formFieldId
-     * @param Form             $form
      *
      * @return FormFieldModel[]
      */
@@ -59,8 +57,6 @@ class FormCompiler
     }
 
     /**
-     * @param FormFieldModel $metaField
-     *
      * @return FormFieldModel[]
      */
     private function compileSubFormFields(FormFieldModel $metaField): array
