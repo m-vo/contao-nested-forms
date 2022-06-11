@@ -7,6 +7,6 @@ services:
   mvo_contao_nested_forms.listener.datacontainer.form_field:
     class: 'Mvo\ContaoNestedForms\EventListener\DataContainer\FormField'
     arguments:
-      - '@security.token_storage'
+      - '@security.helper'
       - '@database_connection'
     public: true

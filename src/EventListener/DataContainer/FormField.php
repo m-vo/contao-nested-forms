@@ -14,50 +14,39 @@ namespace Mvo\ContaoNestedForms\EventListener\DataContainer;
 use Contao\BackendUser;
 use Contao\DataContainer;
 use Doctrine\DBAL\Connection;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Security;
 
 class FormField
 {
-    /** @var TokenInterface */
-    private $token;
+    /** @var Security */
+    private $security;
 
     /** @var Connection */
     private $database;
 
-    /**
-     * FormField constructor.
-     *
-     * @param TokenStorageInterface $tokenStorage
-     * @param Connection            $database
-     */
-    public function __construct(TokenStorageInterface $tokenStorage, Connection $database)
+    public function __construct(Security $security, Connection $database)
     {
-        $this->token = $tokenStorage->getToken();
+        $this->security = $security;
         $this->database = $database;
     }
 
     /**
-     * @param DataContainer $dc
-     *
      * @throws \Doctrine\DBAL\DBALException
-     *
-     * @return array
      */
     public function onGetForms(DataContainer $dc): array
     {
-        /** @var BackendUser $user */
-        $user = $this->token->getUser();
-
-        if (!$user || (!$user->isAdmin && !\is_array($user->forms))) {
+        if (null === ($user = $this->getUser()) || (!$user->isAdmin && !\is_array($user->forms))) {
             return [];
         }
 
-        $formCandidates = $this->database
-            ->executeQuery('SELECT id, title FROM tl_form WHERE id != ? ORDER BY title', [$dc->activeRecord->pid])
-            ->fetchAll(\PDO::FETCH_KEY_PAIR);
+        $formCandidates = $this->database->fetchAllKeyValue(
+            'SELECT id, title FROM tl_form WHERE id != ? ORDER BY title',
+            [$dc->activeRecord->pid]
+        );
 
         $forms = [];
+
+        /* @var BackendUser $user */
         foreach ($formCandidates as $id => $title) {
             if ($user->hasAccess($id, 'forms')) {
                 $forms[$id] = $title.' (ID '.$id.')';
@@ -65,5 +54,14 @@ class FormField
         }
 
         return $forms;
+    }
+
+    private function getUser(): ?BackendUser
+    {
+        if (($user = $this->security->getUser()) instanceof BackendUser) {
+            return $user;
+        }
+
+        return null;
     }
 }
